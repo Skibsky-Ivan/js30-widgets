@@ -104,3 +104,52 @@ uploadImgBtn.addEventListener('change', (e) => {
   previewImg.src = src;
   updateGalleryImgsSRC(galleryImgs, src);
 });
+
+// ================== DOWNLOAD IMG BUTTON ===============
+const buttonDownload = document.querySelector('.button-download');
+
+function renderCanvas() {
+  const canvas = document.createElement('canvas');
+  canvas.width = previewImg.clientWidth;
+  canvas.height = previewImg.clientHeight;
+
+  const context = canvas.getContext('2d');
+
+  const style = getComputedStyle(previewImg);
+
+  context.filter = style.filter;
+
+  context.fillStyle = style.backgroundColor;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+
+  const paddingLeft = parseFloat(style.paddingLeft);
+  const paddingTop = parseFloat(style.paddingTop);
+
+  context.drawImage(
+    previewImg,
+    paddingLeft,
+    paddingTop,
+    canvas.width - paddingLeft * 2,
+    canvas.height - paddingTop * 2,
+  );
+
+  return canvas;
+}
+
+function downloadCanvas(canvas) {
+  canvas.toBlob((blob) => {
+    const link = document.createElement('a');
+
+    link.download = 'example.png';
+    link.href = URL.createObjectURL(blob);
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+  }, 'image/png');
+}
+
+buttonDownload.addEventListener('click', () => {
+  const canvas = renderCanvas();
+  downloadCanvas(canvas);
+});
