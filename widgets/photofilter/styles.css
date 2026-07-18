@@ -162,18 +162,20 @@ input {
 }
 
 .preview-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  filter:
-    grayscale(var(--grayscale))
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: 
+    grayscale(var(--grayscale)) 
     sepia(var(--sepia))
-    saturate(var(--saturate))
+    saturate(var(--saturate)) 
     hue-rotate(var(--hue-rotate))
-    invert(var(--invert))
-    opacity(var(--opacity))
+    invert(var(--invert)) 
+    opacity(var(--opacity)) 
     brightness(var(--brightness))
-    contrast(var(--contrast))
+    contrast(var(--contrast)) 
     blur(var(--blur));
   background: var(--color);
   padding: var(--spacing);
@@ -250,6 +252,7 @@ input {
   .main {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .filters {

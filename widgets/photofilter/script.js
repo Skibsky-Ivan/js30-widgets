@@ -66,21 +66,26 @@ function updateFilterInputs(params) {
   }
 }
 
-function applyGalleryImageSettings(e) {
-  const galleryImg = e.target.closest('.gallery-item-img');
-
-  if (!galleryImg) return;
-
-  const galleryImgParam = galleryParams[galleryImg.dataset.typeImg];
-
-  for (const [param, value] of Object.entries(galleryImgParam)) {
+function applyPreset(params) {
+  for (const [param, value] of Object.entries(params)) {
     document.documentElement.style.setProperty(
       `--${param}`,
       value + units[param],
     );
   }
-
-  updateFilterInputs(galleryImgParam);
+  updateFilterInputs(params);
 }
 
-galleryContainer.addEventListener('click', applyGalleryImageSettings);
+galleryContainer.addEventListener('click', (e) => {
+  const galleryImg = e.target.closest('.gallery-item-img');
+  if (!galleryImg) return;
+  const galleryImgParam = galleryParams[galleryImg.dataset.typeImg];
+  applyPreset(galleryImgParam);
+});
+
+// ================== RESET BUTTON =====================
+const buttonReset = document.querySelector('.button-reset');
+
+buttonReset.addEventListener('click', () => {
+  applyPreset(galleryParams.Default);
+});
