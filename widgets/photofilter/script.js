@@ -51,3 +51,24 @@ async function init(src) {
 }
 
 init('./galleryParams.json');
+
+// ==================== GALLERY CLICK ================
+const galleryContainer = document.querySelector('.gallery-container');
+const previewImg = document.querySelector('.preview-image');
+
+function applyGalleryImageSettings(e) {
+  const galleryImg = e.target.closest('.gallery-item-img');
+
+  if (!galleryImg) return;
+
+  const galleryImgParam = galleryParams[galleryImg.dataset.typeImg];
+
+  for (const [param, value] of Object.entries(galleryImgParam)) {
+    document.documentElement.style.setProperty(
+      `--${param}`,
+      value + units[param],
+    );
+  }
+}
+
+galleryContainer.addEventListener('click', applyGalleryImageSettings);
