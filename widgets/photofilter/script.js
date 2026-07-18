@@ -89,3 +89,18 @@ const buttonReset = document.querySelector('.button-reset');
 buttonReset.addEventListener('click', () => {
   applyPreset(galleryParams.Default);
 });
+
+// ================== UPLOAD IMG BUTTON ===============
+const uploadImgBtn = document.querySelector('#image-upload');
+
+function updateGalleryImgsSRC(imgs, src) {
+  for (const img of imgs) {
+    img.src = src;
+  }
+}
+
+uploadImgBtn.addEventListener('change', (e) => {
+  const src = URL.createObjectURL(uploadImgBtn.files[0]);
+  previewImg.src = src;
+  updateGalleryImgsSRC(galleryImgs, src);
+});
