@@ -55,6 +55,16 @@ init('./galleryParams.json');
 // ==================== GALLERY CLICK ================
 const galleryContainer = document.querySelector('.gallery-container');
 const previewImg = document.querySelector('.preview-image');
+const filterInputs = document.querySelectorAll('.filter-input');
+
+function updateFilterInputs(params) {
+  for (const input of filterInputs) {
+    const value = params[input.name];
+    if (value === undefined) continue;
+
+    input.value = value;
+  }
+}
 
 function applyGalleryImageSettings(e) {
   const galleryImg = e.target.closest('.gallery-item-img');
@@ -69,6 +79,8 @@ function applyGalleryImageSettings(e) {
       value + units[param],
     );
   }
+
+  updateFilterInputs(galleryImgParam);
 }
 
 galleryContainer.addEventListener('click', applyGalleryImageSettings);
