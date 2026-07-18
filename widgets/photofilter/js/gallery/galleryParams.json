@@ -30,7 +30,7 @@
     "hue-rotate": 0,
     "invert": 0,
     "opacity": 100,
-    "brightness": 1.5,
+    "brightness": 2,
     "contrast": 1,
     "blur": 0
   },
@@ -86,7 +86,7 @@
   "Saturate": {
     "grayscale": 0,
     "sepia": 0,
-    "saturate": 3,
+    "saturate": 5,
     "hue-rotate": 0,
     "invert": 0,
     "opacity": 100,
