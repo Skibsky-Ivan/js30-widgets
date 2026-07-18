@@ -207,6 +207,9 @@ input {
 }
 
 .gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   cursor: pointer;
 }
 
